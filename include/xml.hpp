@@ -1,14 +1,34 @@
 #include <string>
 #include <vector>
 
+class SyntaxTree;
+
+class XPath {
+private:
+    SyntaxTree *syntaxTree;
+public:
+    XPath();
+    ~XPath();
+
+    void parse(std::string expression);
+    XML * evaluate(std::string value);
+};
+
+class XQuery {
+private:
+    SyntaxTree *syntaxTree;
+public:
+    XQuery();
+    ~XQuery();
+
+    void parse(std::string query);
+    XML * execute(std::string value);
+};
+
 class Tag {
 public:
     Tag();
     virtual ~Tag() = 0;
-
-    Tag * get() {
-        return this;
-    }
 
     virtual void addChild(Tag * child) = 0;
     virtual void addAtributo(Tag * atributo) = 0;
