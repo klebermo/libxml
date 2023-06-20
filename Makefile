@@ -3,23 +3,23 @@ export cpp_flags := -Wall -pedantic -fPIC -g
 
 all: libxml
 
-libxml: tag.o atributo.o elemento.o comentario.o declaration.o type.o data.o xml.o syntaxNode.o syntaxTree.o xquery.o xpath.o
-	$(cc) $(cpp_flags) -shared -o libxml.so tag.o atributo.o elemento.o comentario.o declaration.o type.o data.o xml.o syntaxNode.o syntaxTree.o xquery.o xpath.o
+libxml: tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o model.o instruction.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o model.o instruction.o xml.o
 
 tag.o: src/tag.cpp
 	$(cc) $(cpp_flags) -c src/tag.cpp
 
-atributo.o: src/atributo.cpp
-	$(cc) $(cpp_flags) -c src/atributo.cpp
+attr.o: src/attr.cpp
+	$(cc) $(cpp_flags) -c src/attr.cpp
 
-elemento.o: src/elemento.cpp
-	$(cc) $(cpp_flags) -c src/elemento.cpp
+element.o: src/element.cpp
+	$(cc) $(cpp_flags) -c src/element.cpp
 
-comentario.o: src/comentario.cpp
-	$(cc) $(cpp_flags) -c src/comentario.cpp
+comment.o: src/comment.cpp
+	$(cc) $(cpp_flags) -c src/comment.cpp
 
-declaration.o: src/declaration.cpp
-	$(cc) $(cpp_flags) -c src/declaration.cpp
+decl.o: src/decl.cpp
+	$(cc) $(cpp_flags) -c src/decl.cpp
 
 type.o: src/type.cpp
 	$(cc) $(cpp_flags) -c src/type.cpp
@@ -27,8 +27,11 @@ type.o: src/type.cpp
 data.o: src/data.cpp
 	$(cc) $(cpp_flags) -c src/data.cpp
 
-xml.o: src/xml.cpp
-	$(cc) $(cpp_flags) -c src/xml.cpp
+model.o: src/model.cpp
+	$(cc) $(cpp_flags) -c src/model.cpp
+
+instruction.o: src/instruction.cpp
+	$(cc) $(cpp_flags) -c src/instruction.cpp
 
 syntaxNode.o: src/syntaxNode.cpp
 	$(cc) $(cpp_flags) -c src/syntaxNode.cpp
@@ -41,6 +44,9 @@ xquery.o: src/xquery.cpp
 
 xpath.o: src/xpath.cpp
 	$(cc) $(cpp_flags) -c src/xpath.cpp
+
+xml.o: src/xml.cpp
+	$(cc) $(cpp_flags) -c src/xml.cpp
 
 clean:
 	rm -f *.o *.so

@@ -1,4 +1,4 @@
-#include "declaration.hpp"
+#include "decl.hpp"
 
 Declaration::Declaration() {
     this->version = "1.0";

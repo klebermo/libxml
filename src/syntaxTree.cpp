@@ -20,6 +20,6 @@ void SyntaxTree::parse(std::string expression) {
     //
 }
 
-XML * SyntaxTree::evaluate(std::string value) {
+Model * SyntaxTree::evaluate() {
     return nullptr;
 }

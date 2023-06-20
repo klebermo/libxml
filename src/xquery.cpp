@@ -4,6 +4,10 @@ XQuery::XQuery() {
     //
 }
 
+XQuery::XQuery(std::string expression) {
+    this->parse(expression);
+}
+
 XQuery::~XQuery() {
     //
 }
@@ -12,6 +16,6 @@ void XQuery::parse(std::string query) {
     //
 }
 
-XML * XQuery::execute(std::string value) {
+Model * XQuery::evaluate() {
     return nullptr;
 }

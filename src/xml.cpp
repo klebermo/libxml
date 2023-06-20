@@ -94,6 +94,14 @@ void XML::parseFile(std::string file_name) {
     parse(xml_string);
 }
 
+XPath * XML::getXPath(std::string expression) {
+    return new XPath(expression);
+}
+
+XQuery * XML::getXQuery(std::string expression) {
+    return new XQuery(expression);
+}
+
 std::string_view ltrim(std::string_view str)
 {
     const auto pos(str.find_first_not_of(" \t\n\r\f\v"));

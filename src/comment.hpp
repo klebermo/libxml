@@ -1,7 +1,7 @@
 #ifndef comentario
 #define comentario
 
-#include "elemento.hpp"
+#include "element.hpp"
 
 class Comentario : public Elemento {
 private:

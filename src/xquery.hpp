@@ -5,13 +5,14 @@
 
 class XQuery {
 private:
-    SyntaxTree *syntaxTree;
+    SyntaxTree * syntaxTree;
 public:
     XQuery();
+    XQuery(std::string expression);
     ~XQuery();
 
     void parse(std::string query);
-    XML * execute(std::string value);
+    Model * evaluate();
 };
 
 #endif

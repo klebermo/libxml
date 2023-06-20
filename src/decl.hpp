@@ -1,7 +1,7 @@
 #ifndef declaration_hpp
 #define declaration_hpp
 
-#include "elemento.hpp"
+#include "element.hpp"
 
 class Declaration : public Elemento {
 private:

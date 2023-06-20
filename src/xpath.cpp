@@ -4,6 +4,10 @@ XPath::XPath() {
     //
 }
 
+XPath::XPath(std::string expression) {
+    this->parse(expression);
+}
+
 XPath::~XPath() {
     //
 }
@@ -12,6 +16,6 @@ void XPath::parse(std::string expression) {
     //
 }
 
-XML * XPath::evaluate(std::string value) {
+Model * XPath::evaluate() {
     return nullptr;
 }

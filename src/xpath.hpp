@@ -1,17 +1,18 @@
 #ifndef xpath_hpp
 #define xpath_hpp
 
-#include "syntaxTree.hpp"
+#include "xquery.hpp"
 
 class XPath {
 private:
-    SyntaxTree *syntaxTree;
+    SyntaxTree * syntaxTree;
 public:
     XPath();
+    XPath(std::string expression);
     ~XPath();
 
     void parse(std::string expression);
-    XML * evaluate(std::string value);
+    Model * evaluate();
 };
 
 #endif

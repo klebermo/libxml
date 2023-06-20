@@ -1,7 +1,7 @@
 #ifndef type_hpp
 #define type_hpp
 
-#include "elemento.hpp"
+#include "element.hpp"
 
 class DocType : public Elemento {
 private:

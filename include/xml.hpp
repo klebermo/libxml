@@ -3,6 +3,34 @@
 
 class SyntaxTree;
 
+class Tag {
+public:
+    Tag();
+    virtual ~Tag() = 0;
+
+    virtual void addChild(Tag * child) = 0;
+    virtual void addAtributo(Tag * atributo) = 0;
+
+    virtual void parse(std::string xml_string) = 0;
+    virtual std::string toString() = 0;
+};
+
+class XML {
+private:
+    Tag * root;
+public:
+    XML();
+    ~XML();
+
+    Tag * getRoot();
+
+    void parse(std::string xml_string);
+    std::string toString();
+
+    void parseFile(std::string file_path);
+    Tag * operator[](std::string key);
+};
+
 class XPath {
 private:
     SyntaxTree *syntaxTree;
@@ -23,18 +51,6 @@ public:
 
     void parse(std::string query);
     XML * execute(std::string value);
-};
-
-class Tag {
-public:
-    Tag();
-    virtual ~Tag() = 0;
-
-    virtual void addChild(Tag * child) = 0;
-    virtual void addAtributo(Tag * atributo) = 0;
-
-    virtual void parse(std::string xml_string) = 0;
-    virtual std::string toString() = 0;
 };
 
 class Declaration : public Tag {
@@ -161,22 +177,6 @@ public:
 
     void parse(std::string xml_string);
     std::string toString();
-};
-
-class XML {
-private:
-    Tag * root;
-public:
-    XML();
-    ~XML();
-
-    Tag * getRoot();
-
-    void parse(std::string xml_string);
-    std::string toString();
-
-    void parseFile(std::string file_path);
-    Tag * operator[](std::string key);
 };
 
 std::string_view ltrim(std::string_view str);

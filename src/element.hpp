@@ -1,7 +1,7 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include "atributo.hpp"
+#include "attr.hpp"
 
 class Elemento : public Tag {
 protected:
