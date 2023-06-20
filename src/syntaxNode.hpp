@@ -1,6 +1,9 @@
 #ifndef syntaxNode_hpp
 #define syntaxNode_hpp
 
+#include "model.hpp"
+#include "instruction.hpp"
+
 #include <string>
 
 class SyntaxNode {
@@ -8,8 +11,7 @@ private:
     SyntaxNode* left;
     SyntaxNode* right;
     SyntaxNode* parent;
-    int type;
-    int value;
+    Instruction* instruction;
 public:
     SyntaxNode();
     ~SyntaxNode();
@@ -18,15 +20,12 @@ public:
     void setRight(SyntaxNode* right);
     void setParent(SyntaxNode* parent);
 
-    void setType(int type);
-    void setValue(int value);
-
     SyntaxNode* getLeft();
     SyntaxNode* getRight();
     SyntaxNode* getParent();
 
-    int getType();
-    int getValue();
+    void setInstruction(Instruction* instruction);
+    Instruction* getInstruction();
 };
 
 #endif

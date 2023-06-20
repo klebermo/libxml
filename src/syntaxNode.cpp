@@ -1,15 +1,17 @@
 #include "syntaxNode.hpp"
 
 SyntaxNode::SyntaxNode() {
-    this->type = 0;
-    this->value = 0;
     this->left = nullptr;
     this->right = nullptr;
+    this->parent = nullptr;
+    this->instruction = nullptr;
 }
 
 SyntaxNode::~SyntaxNode() {
     delete this->left;
     delete this->right;
+    delete this->parent;
+    delete this->instruction;
 }
 
 void SyntaxNode::setLeft(SyntaxNode* left) {
@@ -24,14 +26,6 @@ void SyntaxNode::setParent(SyntaxNode* parent) {
     this->parent = parent;
 }
 
-void SyntaxNode::setType(int type) {
-    this->type = type;
-}
-
-void SyntaxNode::setValue(int value) {
-    this->value = value;
-}
-
 SyntaxNode* SyntaxNode::getLeft() {
     return this->left;
 }
@@ -44,10 +38,10 @@ SyntaxNode* SyntaxNode::getParent() {
     return this->parent;
 }
 
-int SyntaxNode::getType() {
-    return this->type;
+void SyntaxNode::setInstruction(Instruction* instruction) {
+    this->instruction = instruction;
 }
 
-int SyntaxNode::getValue() {
-    return this->value;
+Instruction* SyntaxNode::getInstruction() {
+    return this->instruction;
 }

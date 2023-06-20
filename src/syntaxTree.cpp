@@ -16,6 +16,10 @@ SyntaxNode* SyntaxTree::getRoot() {
     return this->root;
 }
 
+void SyntaxTree::insert(NodeType type, int value) {
+    //
+}
+
 void SyntaxTree::parse(std::string expression) {
     //
 }

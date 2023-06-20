@@ -1,7 +1,6 @@
 #ifndef syntaxTree_hpp
 #define syntaxTree_hpp
 
-#include "model.hpp"
 #include "syntaxNode.hpp"
 
 class SyntaxTree {
@@ -13,6 +12,8 @@ public:
 
     void setRoot(SyntaxNode* root);
     SyntaxNode* getRoot();
+
+    void insert(NodeType type, int value);
 
     void parse(std::string expression);
     Model * evaluate();
