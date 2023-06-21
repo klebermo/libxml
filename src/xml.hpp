@@ -5,7 +5,6 @@
 #include "type.hpp"
 #include "data.hpp"
 #include "comment.hpp"
-#include "xpath.hpp"
 #include "xquery.hpp"
 
 class XML {
@@ -22,12 +21,8 @@ public:
 
     void parseFile(std::string file_path);
 
-    XPath * getXPath(std::string expression);
-    XQuery * getXQuery(std::string expression);
+    void evaluateXPath(std::string expression);
+    void evaluateXQuery(std::string expression);
 };
-
-std::string_view ltrim(std::string_view str);
-std::string_view rtrim(std::string_view str);
-std::string_view trim(std::string_view str);
 
 #endif

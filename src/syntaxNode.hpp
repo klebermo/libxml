@@ -1,31 +1,27 @@
 #ifndef syntaxNode_hpp
 #define syntaxNode_hpp
 
-#include "model.hpp"
-#include "instruction.hpp"
-
 #include <string>
 
 class SyntaxNode {
 private:
-    SyntaxNode* left;
-    SyntaxNode* right;
-    SyntaxNode* parent;
-    Instruction* instruction;
+    SyntaxNode * parent;
+    SyntaxNode * left;
+    SyntaxNode * right;
+    char value;
 public:
     SyntaxNode();
     ~SyntaxNode();
 
-    void setLeft(SyntaxNode* left);
-    void setRight(SyntaxNode* right);
-    void setParent(SyntaxNode* parent);
+    void setParent(SyntaxNode * parent);
+    void setLeft(SyntaxNode * left);
+    void setRight(SyntaxNode * right);
+    void setValue(char value);
 
-    SyntaxNode* getLeft();
-    SyntaxNode* getRight();
-    SyntaxNode* getParent();
-
-    void setInstruction(Instruction* instruction);
-    Instruction* getInstruction();
+    SyntaxNode * getParent();
+    SyntaxNode * getLeft();
+    SyntaxNode * getRight();
+    char getValue();
 };
 
 #endif

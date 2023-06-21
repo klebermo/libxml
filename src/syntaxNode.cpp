@@ -1,47 +1,46 @@
 #include "syntaxNode.hpp"
 
 SyntaxNode::SyntaxNode() {
+    this->parent = nullptr;
     this->left = nullptr;
     this->right = nullptr;
-    this->parent = nullptr;
-    this->instruction = nullptr;
+    this->value = '\0';
 }
 
 SyntaxNode::~SyntaxNode() {
+    delete this->parent;
     delete this->left;
     delete this->right;
-    delete this->parent;
-    delete this->instruction;
 }
 
-void SyntaxNode::setLeft(SyntaxNode* left) {
-    this->left = left;
-}
-
-void SyntaxNode::setRight(SyntaxNode* right) {
-    this->right = right;
-}
-
-void SyntaxNode::setParent(SyntaxNode* parent) {
+void SyntaxNode::setParent(SyntaxNode * parent) {
     this->parent = parent;
 }
 
-SyntaxNode* SyntaxNode::getLeft() {
-    return this->left;
+void SyntaxNode::setLeft(SyntaxNode * left) {
+    this->left = left;
 }
 
-SyntaxNode* SyntaxNode::getRight() {
-    return this->right;
+void SyntaxNode::setRight(SyntaxNode * right) {
+    this->right = right;
 }
 
-SyntaxNode* SyntaxNode::getParent() {
+void SyntaxNode::setValue(char value) {
+    this->value = value;
+}
+
+SyntaxNode * SyntaxNode::getParent() {
     return this->parent;
 }
 
-void SyntaxNode::setInstruction(Instruction* instruction) {
-    this->instruction = instruction;
+SyntaxNode * SyntaxNode::getLeft() {
+    return this->left;
 }
 
-Instruction* SyntaxNode::getInstruction() {
-    return this->instruction;
+SyntaxNode * SyntaxNode::getRight() {
+    return this->right;
+}
+
+char SyntaxNode::getValue() {
+    return this->value;
 }

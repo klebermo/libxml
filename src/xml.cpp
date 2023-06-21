@@ -94,12 +94,16 @@ void XML::parseFile(std::string file_name) {
     parse(xml_string);
 }
 
-XPath * XML::getXPath(std::string expression) {
-    return new XPath(expression);
+void XML::evaluateXPath(std::string expression) {
+    XPath * path = new XPath();
+    path->parse(expression);
+    path->evaluate();
 }
 
-XQuery * XML::getXQuery(std::string expression) {
-    return new XQuery(expression);
+void XML::evaluateXQuery(std::string expression) {
+    XQuery * query = new XQuery();
+    query->parse(expression);
+    query->evaluate();
 }
 
 std::string_view ltrim(std::string_view str)

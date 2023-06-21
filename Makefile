@@ -3,8 +3,8 @@ export cpp_flags := -Wall -pedantic -fPIC -g
 
 all: libxml
 
-libxml: tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o model.o instruction.o xml.o
-	$(cc) $(cpp_flags) -shared -o libxml.so tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o model.o instruction.o xml.o
+libxml: tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so tag.o attr.o element.o comment.o decl.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
 
 tag.o: src/tag.cpp
 	$(cc) $(cpp_flags) -c src/tag.cpp
@@ -26,12 +26,6 @@ type.o: src/type.cpp
 
 data.o: src/data.cpp
 	$(cc) $(cpp_flags) -c src/data.cpp
-
-model.o: src/model.cpp
-	$(cc) $(cpp_flags) -c src/model.cpp
-
-instruction.o: src/instruction.cpp
-	$(cc) $(cpp_flags) -c src/instruction.cpp
 
 syntaxNode.o: src/syntaxNode.cpp
 	$(cc) $(cpp_flags) -c src/syntaxNode.cpp

@@ -13,10 +13,10 @@ public:
     void setRoot(SyntaxNode* root);
     SyntaxNode* getRoot();
 
-    void insert(NodeType type, int value);
+    void insert(SyntaxNode * node);
 
     void parse(std::string expression);
-    Model * evaluate();
+    std::string evaluate();
 };
 
 #endif
