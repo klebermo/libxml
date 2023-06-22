@@ -26,12 +26,12 @@ void XML::parse(std::string xml_string) {
         char second = tag[2];
 
         if(first == '?') {
-            Declaration * decl = new Declaration();
+            Document * decl = new Document();
             decl->parse(tag);
             this->root = decl;
         } else if(first == '!') {
             if(second == '-') {
-                Comentario * comment = new Comentario();
+                Comment * comment = new Comment();
                 comment->parse(tag);
                 this->root->addChild(comment);
             } else if(second == '[') {
@@ -65,7 +65,7 @@ void XML::parse(std::string xml_string) {
 
             tag += value + close_tag;
 
-            Elemento * elem = new Elemento();
+            Element * elem = new Element();
             elem->parse(tag);
             this->root->addChild(elem);
         }

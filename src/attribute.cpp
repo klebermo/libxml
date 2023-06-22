@@ -1,43 +1,43 @@
-#include "attr.hpp"
+#include "attribute.hpp"
 
-Atributo::Atributo() {
+Attribute::Attribute() {
     //
 }
 
-Atributo::Atributo(std::string key, std::string value) {
+Attribute::Attribute(std::string key, std::string value) {
     this->key = key;
     this->value = value;
 }
 
-Atributo::~Atributo() {
+Attribute::~Attribute() {
     //
 }
 
-std::string Atributo::getKey() {
+std::string Attribute::getKey() {
     return this->key;
 }
 
-void Atributo::setKey(std::string key) {
+void Attribute::setKey(std::string key) {
     this->key = key;
 }
 
-std::string Atributo::getValue() {
+std::string Attribute::getValue() {
     return this->value;
 }
 
-void Atributo::setValue(std::string value) {
+void Attribute::setValue(std::string value) {
     this->value = value;
 }
 
-void Atributo::addChild(Tag * child) {
+void Attribute::addChild(Tag * child) {
     //
 }
 
-void Atributo::addAtributo(Tag * atributo) {
+void Attribute::addAttribute(Tag * atributo) {
     //
 }
 
-void Atributo::parse(std::string xml_string) {
+void Attribute::parse(std::string xml_string) {
     int key_start = xml_string.find_first_not_of(' ');
     int key_end = xml_string.find_first_of('=', key_start);
 
@@ -52,6 +52,6 @@ void Atributo::parse(std::string xml_string) {
     setValue(value);
 }
 
-std::string Atributo::toString() {
+std::string Attribute::toString() {
     return this->key + "=\"" + this->value + "\"";
 }

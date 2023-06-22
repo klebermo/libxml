@@ -10,7 +10,7 @@ public:
     virtual ~Tag() = 0;
 
     virtual void addChild(Tag * child) = 0;
-    virtual void addAtributo(Tag * atributo) = 0;
+    virtual void addAttribute(Tag * atributo) = 0;
 
     virtual void parse(std::string xml_string) = 0;
     virtual std::string toString() = 0;

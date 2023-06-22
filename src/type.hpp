@@ -3,7 +3,7 @@
 
 #include "element.hpp"
 
-class DocType : public Elemento {
+class DocType : public Element {
 private:
     std::string name;
     std::string id;

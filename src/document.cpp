@@ -1,29 +1,29 @@
-#include "decl.hpp"
+#include "document.hpp"
 
-Declaration::Declaration() {
+Document::Document() {
     this->version = "1.0";
     this->encoding = "UTF-8";
 }
 
-Declaration::~Declaration() {}
+Document::~Document() {}
 
-std::string Declaration::getVersion() {
+std::string Document::getVersion() {
     return this->version;
 }
 
-void Declaration::setVersion(std::string version) {
+void Document::setVersion(std::string version) {
     this->version = version;
 }
 
-std::string Declaration::getEncoding() {
+std::string Document::getEncoding() {
     return this->encoding;
 }
 
-void Declaration::setEncoding(std::string encoding) {
+void Document::setEncoding(std::string encoding) {
     this->encoding = encoding;
 }
 
-void Declaration::parse(std::string xml_string) {
+void Document::parse(std::string xml_string) {
     std::string tag_start = "<?xml";
     std::string tag_end = "?>";
 
@@ -47,7 +47,7 @@ void Declaration::parse(std::string xml_string) {
     setEncoding(encoding);
 }
 
-std::string Declaration::toString() {
+std::string Document::toString() {
     std::string result = "<?xml version=\"" + this->version + "\" encoding=\"" + this->encoding;
 
     for(Atributo atributo : this->atributos) {

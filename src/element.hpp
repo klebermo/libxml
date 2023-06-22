@@ -1,17 +1,17 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include "attr.hpp"
+#include "attribute.hpp"
 
-class Elemento : public Tag {
+class Element : public Tag {
 protected:
     std::string key;
     std::string value;
-    std::vector<Atributo> atributos;
-    std::vector<Elemento> children;
+    std::vector<Attribute> attributes;
+    std::vector<Element> children;
 public:
-    Elemento();
-    ~Elemento();
+    Element();
+    ~Element();
 
     std::string getKey();
     void setKey(std::string key);
@@ -19,17 +19,17 @@ public:
     std::string getValue();
     void setValue(std::string value);
 
-    std::vector<Atributo> getAtributos();
-    void setAtributos(std::vector<Atributo> atributos);
+    std::vector<Attribute> getAttributes();
+    void setAttributes(std::vector<Attribute> attributes);
 
-    std::vector<Elemento> getChildren();
-    void setChildren(std::vector<Elemento> children);
+    std::vector<Element> getChildren();
+    void setChildren(std::vector<Element> children);
 
-    Elemento * get(std::string key);
+    Element * get(std::string key);
     std::string get_value(std::string key);
 
     void addChild(Tag * child);
-    void addAtributo(Tag * atributo);
+    void addAttribute(Tag * attribute);
 
     void parse(std::string xml_string);
     std::string toString();

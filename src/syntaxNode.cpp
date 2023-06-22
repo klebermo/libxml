@@ -4,7 +4,14 @@ SyntaxNode::SyntaxNode() {
     this->parent = nullptr;
     this->left = nullptr;
     this->right = nullptr;
-    this->value = '\0';
+}
+
+SyntaxNode::SyntaxNode(Type type, std::string value) {
+    this->parent = nullptr;
+    this->left = nullptr;
+    this->right = nullptr;
+    this->type = type;
+    this->value = value;
 }
 
 SyntaxNode::~SyntaxNode() {
@@ -25,7 +32,11 @@ void SyntaxNode::setRight(SyntaxNode * right) {
     this->right = right;
 }
 
-void SyntaxNode::setValue(char value) {
+void SyntaxNode::setType(Type type) {
+    this->type = type;
+}
+
+void SyntaxNode::setValue(std::string value) {
     this->value = value;
 }
 
@@ -41,6 +52,10 @@ SyntaxNode * SyntaxNode::getRight() {
     return this->right;
 }
 
-char SyntaxNode::getValue() {
+Type SyntaxNode::getType() {
+    return this->type;
+}
+
+std::string SyntaxNode::getValue() {
     return this->value;
 }

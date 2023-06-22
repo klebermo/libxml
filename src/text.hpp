@@ -1,14 +1,18 @@
-#ifndef comment_hpp
-#define comment_hpp
+#ifndef text_hpp
+#define text_hpp
 
-#include "element.hpp"
+#include "tag.hpp"
 
-class Comment : public Element {
+class Text : public Tag {
 private:
+    std::string name;
     std::string value;
 public:
-    Comment();
-    ~Comment() override;
+    Text();
+    ~Text() override;
+
+    std::string getName();
+    void setName(std::string name);
 
     std::string getValue();
     void setValue(std::string value);

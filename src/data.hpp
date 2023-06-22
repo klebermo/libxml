@@ -3,7 +3,7 @@
 
 #include "element.hpp"
 
-class Data : public Elemento {
+class Data : public Element {
 private:
     std::string value;
 public:

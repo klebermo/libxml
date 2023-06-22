@@ -1,18 +1,18 @@
 #include "comment.hpp"
 
-Comentario::Comentario() {}
+Comment::Comment() {}
 
-Comentario::~Comentario() {}
+Comment::~Comment() {}
 
-std::string Comentario::getValue() {
+std::string Comment::getValue() {
     return this->value;
 }
 
-void Comentario::setValue(std::string value) {
+void Comment::setValue(std::string value) {
     this->value = value;
 }
 
-void Comentario::parse(std::string xml_string) {
+void Comment::parse(std::string xml_string) {
     std::string tag_start = "<!--";
     std::string tag_end = "-->";
 
@@ -24,6 +24,6 @@ void Comentario::parse(std::string xml_string) {
     setValue(value);
 }
 
-std::string Comentario::toString() {
+std::string Comment::toString() {
     return "<!--" + this->value + "-->";
 }

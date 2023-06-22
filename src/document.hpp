@@ -3,13 +3,13 @@
 
 #include "element.hpp"
 
-class Declaration : public Elemento {
+class Document : public Element {
 private:
     std::string version;
     std::string encoding;
 public:
-    Declaration();
-    ~Declaration() override;
+    Document();
+    ~Document() override;
 
     std::string getVersion();
     void setVersion(std::string version);
