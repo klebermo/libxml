@@ -6,7 +6,7 @@ SyntaxNode::SyntaxNode() {
     this->right = nullptr;
 }
 
-SyntaxNode::SyntaxNode(Type type, std::string value) {
+SyntaxNode::SyntaxNode(int type, std::string value) {
     this->parent = nullptr;
     this->left = nullptr;
     this->right = nullptr;
@@ -32,7 +32,7 @@ void SyntaxNode::setRight(SyntaxNode * right) {
     this->right = right;
 }
 
-void SyntaxNode::setType(Type type) {
+void SyntaxNode::setType(int type) {
     this->type = type;
 }
 
@@ -52,7 +52,7 @@ SyntaxNode * SyntaxNode::getRight() {
     return this->right;
 }
 
-Type SyntaxNode::getType() {
+int SyntaxNode::getType() {
     return this->type;
 }
 
