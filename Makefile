@@ -3,20 +3,14 @@ export cpp_flags := -Wall -pedantic -fPIC -g
 
 all: libxml
 
-libxml: tag.o attribute.o namespace.o instruction.o text.o element.o comment.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
-	$(cc) $(cpp_flags) -shared -o libxml.so tag.o attribute.o namespace.o instruction.o text.o element.o comment.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
+libxml: tag.o attribute.o text.o element.o comment.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so tag.o attribute.o text.o element.o comment.o type.o data.o syntaxNode.o syntaxTree.o xquery.o xpath.o xml.o
 
 tag.o: src/tag.cpp
 	$(cc) $(cpp_flags) -c src/tag.cpp
 
 attribute.o: src/attribute.cpp
 	$(cc) $(cpp_flags) -c src/attribute.cpp
-
-namespace.o: src/namespace.cpp
-	$(cc) $(cpp_flags) -c src/namespace.cpp
-
-instruction.o: src/instruction.cpp
-	$(cc) $(cpp_flags) -c src/instruction.cpp
 
 text.o: src/text.cpp
 	$(cc) $(cpp_flags) -c src/text.cpp
