@@ -5,6 +5,7 @@ all: libxml
 
 libxml: tag.o xml.o
 	$(cc) $(cpp_flags) -shared -o libxml.so tag.o xml.o
+	ar -rcs libxml.a tag.o xml.o
 
 tag.o: src/tag.cpp
 	$(cc) $(cpp_flags) -c src/tag.cpp
