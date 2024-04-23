@@ -1,9 +1,10 @@
 #ifndef xml_hpp
 #define xml_hpp
 
-class Xml {
+#include "tag.hpp"
+
+class xml {
     //
 };
-typedef Xml xml;
 
 #endif
