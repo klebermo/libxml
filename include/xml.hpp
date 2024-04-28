@@ -1,12 +1,3 @@
-#include <string>
-#include <vector>
-
-class Tag {
+class xml {
     //
 };
-typedef Tag tag;
-
-class Xml {
-    //
-};
-typedef Xml xml;
