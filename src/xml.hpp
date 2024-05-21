@@ -1,10 +1,14 @@
 #ifndef xml_hpp
 #define xml_hpp
 
-#include "element.hpp"
+#include "query.hpp"
 
-class xml {
-    //
+class Xml {
+private:
+    Element * root;
+public:
+    Xml(std::string data);
+    std::list<Element> getElementsByTagName(std::string name);
 };
 
 #endif
