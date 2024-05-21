@@ -1,7 +1,7 @@
 #ifndef path_hpp
 #define path_hpp
 
-#include "element.hpp"
+#include "text.hpp"
 
 class Path {
 private:
