@@ -7,19 +7,36 @@ class Element {
 private:
     std::string name;
     std::map<std::string, std::string> attributes;
-    std::vector<Element> children;
+    std::vector<Element*> children;
+
+    void parse(Element * node, std::string input);
+public:
+    Element();
+    Element(std::string input);
+    Element(Element * node, std::string input);
+    void add_child(Element * node);
 
     std::string getName();
     void setName(std::string value);
 
-    std::map<std::string, std::string> get_attributes();
-    void add_attribute(std::string key, std::string value);
+    std::string getAttributeValue(std::string key);
+    void setAttribute(std::string key, std::string value);
 
-    void add_child(Element child);
+    Element getElementByTagName(std::string name);
+    std::vector<Element> getElementsByTagName(std::string name);
+
+    Element innerHTML();
+    std::string innerText();
+};
+
+class Text: public Element {
+private:
+    std::string content;
 public:
-    Element();
-    Element(std::string data);
-    std::list<Element> getElementsByTagName(std::string name);
+    Text();
+    Text(std::string value);
+    std::string getContent();
+    void setContent(std::string value);
 };
 
 #endif

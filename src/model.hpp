@@ -1,6 +1,7 @@
 #ifndef model_hpp
 #define model_hpp
 
+#include <iostream>
 #include <string>
 #include <list>
 #include <map>
