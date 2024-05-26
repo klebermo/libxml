@@ -8,12 +8,8 @@ private:
     Element * root;
 public:
     Xml(std::string data);
-
-    Element getElementByTagName(std::string name);
-    std::vector<Element> getElementsByTagName(std::string name);
-
-    Element innerHTML();
-    std::string innerText();
+    ~Xml();
+    std::vector<Element *> getElementsByTagName(std::string name);
 };
 
 #endif

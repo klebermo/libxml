@@ -11,14 +11,10 @@ class Element {
 private:
     std::string name;
     std::map<std::string, std::string> attributes;
-    std::vector<Element*> children;
-
-    void parse(Element * node, std::string input);
+    std::vector<Element *> children;
 public:
-    Element();
     Element(std::string input);
-    Element(Element * node, std::string input);
-    void add_child(Element * node);
+    ~Element();
 
     std::string getName();
     void setName(std::string value);
@@ -26,21 +22,16 @@ public:
     std::string getAttributeValue(std::string key);
     void setAttribute(std::string key, std::string value);
 
-    Element getElementByTagName(std::string name);
-    std::vector<Element> getElementsByTagName(std::string name);
-
-    Element innerHTML();
-    std::string innerText();
+    std::vector<Element *> getElementsByTagName(std::string name);
+    void parse(Element * node, std::string input);
 };
 
 class Text: public Element {
 private:
     std::string content;
 public:
-    Text();
     Text(std::string value);
-    std::string getContent();
-    void setContent(std::string value);
+    std::string textContent();
 };
 
 #endif
@@ -53,12 +44,8 @@ private:
     Element * root;
 public:
     Xml(std::string data);
-
-    Element getElementByTagName(std::string name);
-    std::vector<Element> getElementsByTagName(std::string name);
-
-    Element innerHTML();
-    std::string innerText();
+    ~Xml();
+    std::vector<Element *> getElementsByTagName(std::string name);
 };
 
 #endif
