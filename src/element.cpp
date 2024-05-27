@@ -1,6 +1,6 @@
 #include "element.hpp"
 
-Element::Element(std::string input) {
+Element::Element(std::string name, std::string input) {
     this->parse(input);
 }
 
@@ -68,10 +68,10 @@ void Element::parse(std::string input) {
                 std::string content = nestedMatches[0].str();
 
                 if(content.find("<") != std::string::npos) {
-                    Element * node = new Element(content);
+                    Element * node = new Element(name, content);
                     this->children.push_back(node);
                 } else {
-                    Text * node = new Text(content);
+                    Text * node = new Text(name, content);
                     this->children.push_back(node);
                 }
 
@@ -83,7 +83,7 @@ void Element::parse(std::string input) {
     }
 }
 
-Text::Text(std::string value) : Element(value) {
+Text::Text(std::string name, std::string value) : Element(name, value) {
     this->content = value;
 }
 

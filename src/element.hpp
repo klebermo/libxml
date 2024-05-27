@@ -10,7 +10,7 @@ private:
     std::string text;
     std::vector<Element *> children;
 public:
-    Element(std::string input);
+    Element(std::string name, std::string input);
     ~Element();
 
     std::string getName();
@@ -28,7 +28,7 @@ class Text: public Element {
 private:
     std::string content;
 public:
-    Text(std::string value);
+    Text(std::string name, std::string value);
     std::string textContent();
 };
 

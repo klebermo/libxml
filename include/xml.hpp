@@ -36,16 +36,33 @@ public:
 
 #endif
 
+#ifndef namespace_hpp
+#define namespace_hpp
+
+class Namespace {
+private:
+    std::string name;
+    Element * root;
+public:
+    Namespace(std::string name, std::string data);
+    ~Namespace();
+    std::string getName();
+    std::vector<Element *> getElementsByTagName(std::string name);
+};
+
+#endif
+
 #ifndef xml_hpp
 #define xml_hpp
 
 class Xml {
 private:
-    Element * root;
+    std::vector<Namespace *> namespaces;
 public:
     Xml(std::string data);
     ~Xml();
     std::vector<Element *> getElementsByTagName(std::string name);
+    std::vector<Element *> getElementsByTagName(std::string prefix, std::string name);
 };
 
 #endif
