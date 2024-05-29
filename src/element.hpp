@@ -1,27 +1,40 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include "model.hpp"
+#include <string>
+#include <list>
+#include <map>
+#include <vector>
+#include <regex>
+
+class Attribute {
+private:
+    void parse(std::string data);
+public:
+    std::string key;
+    std::string value;
+
+    Attribute(std::string data);
+    Attribute(std::string key, std::string value);
+};
 
 class Element {
 private:
     std::string name;
-    std::map<std::string, std::string> attributes;
-    std::string text;
+    std::vector<Attribute> attributes;
     std::vector<Element *> children;
+
+    void parse(std::string prefix, std::string input);
 public:
-    Element(std::string name, std::string input);
+    Element(std::string prefix, std::string input);
     ~Element();
 
     std::string getName();
     void setName(std::string value);
 
-    std::string getAttributeValue(std::string key);
-    void setAttribute(std::string key, std::string value);
-
     std::vector<Element *> getElementsByTagName(std::string name);
+    std::string getAttribute(std::string key);
     std::string getTextContent();
-    void parse(std::string input);
 };
 
 class Text: public Element {

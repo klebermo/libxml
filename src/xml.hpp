@@ -1,16 +1,17 @@
 #ifndef xml_hpp
 #define xml_hpp
 
-#include "namespace.hpp"
+#include "prolog.hpp"
+#include "document.hpp"
 
 class Xml {
 private:
-    std::vector<Namespace *> namespaces;
+    Prolog * prolog;
+    Document * document;
 public:
     Xml(std::string data);
     ~Xml();
-    std::vector<Element *> getElementsByTagName(std::string name);
-    std::vector<Element *> getElementsByTagName(std::string prefix, std::string name);
+    Document * getDocument();
 };
 
 #endif

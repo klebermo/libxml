@@ -1,7 +1,28 @@
 #include "element.hpp"
 
-Element::Element(std::string name, std::string input) {
-    this->parse(input);
+Attribute::Attribute(std::string data) {
+    this->parse(data);
+}
+
+Attribute::Attribute(std::string key, std::string value) {
+    this->key = key;
+    this->value = value;
+}
+
+void Attribute::parse(std::string data) {
+    std::regex attributeHandler("(\\w+)=([\"'])(.*?)\\2|\\w+");
+    auto attrsBegin = std::sregex_iterator(data.begin(), data.end(), attributeHandler);
+    auto attrsEnd = std::sregex_iterator();
+
+    for (std::sregex_iterator i = attrsBegin; i != attrsEnd; ++i) {
+        std::smatch attrMatch = *i;
+        this->key = attrMatch[1].str();
+        this->value = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
+    }
+}
+
+Element::Element(std::string prefix, std::string input) {
+    this->parse(prefix,input);
 }
 
 Element::~Element() {
@@ -18,12 +39,13 @@ void Element::setName(std::string value) {
     this->name = value;
 }
 
-std::string Element::getAttributeValue(std::string key) {
-    return this->attributes[key];
-}
-
-void Element::setAttribute(std::string key, std::string value) {
-    this->attributes[key] = value;
+std::string Element::getAttribute(std::string key) {
+    for(Attribute attribute : attributes) {
+        if(attribute.key.compare(key) == 0) {
+            return attribute.value;
+        }
+    }
+    return "";
 }
 
 std::vector<Element *> Element::getElementsByTagName(std::string name) {
@@ -38,7 +60,7 @@ std::vector<Element *> Element::getElementsByTagName(std::string name) {
     return result;
 }
 
-void Element::parse(std::string input) {
+void Element::parse(std::string prefix, std::string input) {
     std::regex expressionHandler("<(\\w+)((?:\\s+\\w+=(?:\"[^\"]*\"|\\w+))*)\\s*(?:>([\\s\\S]*?)</\\1>|/>)");
     std::smatch matches;
 
@@ -57,7 +79,7 @@ void Element::parse(std::string input) {
             std::smatch attrMatch = *i;
             std::string key = attrMatch[1].str();
             std::string value = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
-            this->attributes[key] = value;
+            this->attributes.push_back(Attribute(key, value));
         }
 
         if (!innerContent.empty()) {
