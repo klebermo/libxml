@@ -1,16 +1,15 @@
 #ifndef document_hpp
 #define document_hpp
 
-#include "namespace.hpp"
+#include "query.hpp"
 
 class Document {
 private:
-    std::vector<Namespace *> namespaces;
+    Element * root;
 public:
-    Document(std::string prefix, std::string data);
+    Document(std::string input);
     ~Document();
     std::vector<Element *> getElementsByTagName(std::string name);
-    std::vector<Element *> getElementsByTagName(std::string prefix, std::string name);
 };
 
 #endif

@@ -1,15 +1,19 @@
 #ifndef xml_hpp
 #define xml_hpp
 
-#include "prolog.hpp"
 #include "document.hpp"
 
 class Xml {
 private:
-    Prolog * prolog;
+    std::string version;
+    std::string encoding;
+    std::string standalone;
+
     Document * document;
+
+    void parse(std::string input);
 public:
-    Xml(std::string data);
+    Xml(std::string input);
     ~Xml();
     Document * getDocument();
 };

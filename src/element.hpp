@@ -20,13 +20,14 @@ public:
 
 class Element {
 private:
+    std::string prefix;
     std::string name;
     std::vector<Attribute> attributes;
     std::vector<Element *> children;
 
-    void parse(std::string prefix, std::string input);
+    void parse(std::string input);
 public:
-    Element(std::string prefix, std::string input);
+    Element(std::string input);
     ~Element();
 
     std::string getName();
@@ -41,7 +42,7 @@ class Text: public Element {
 private:
     std::string content;
 public:
-    Text(std::string name, std::string value);
+    Text(std::string value);
     std::string textContent();
 };
 

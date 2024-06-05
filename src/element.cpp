@@ -1,7 +1,7 @@
 #include "element.hpp"
 
-Attribute::Attribute(std::string data) {
-    this->parse(data);
+Attribute::Attribute(std::string input) {
+    this->parse(input);
 }
 
 Attribute::Attribute(std::string key, std::string value) {
@@ -21,14 +21,15 @@ void Attribute::parse(std::string data) {
     }
 }
 
-Element::Element(std::string prefix, std::string input) {
-    this->parse(prefix,input);
+Element::Element(std::string input) {
+    this->parse(input);
 }
 
 Element::~Element() {
+    this->prefix.clear();
     this->name.clear();
     this->attributes.clear();
-    for(size_t i=0; i<this->children.size(); i++) delete this->children[i];
+    this->children.clear();
 }
 
 std::string Element::getName() {
@@ -60,7 +61,7 @@ std::vector<Element *> Element::getElementsByTagName(std::string name) {
     return result;
 }
 
-void Element::parse(std::string prefix, std::string input) {
+void Element::parse(std::string input) {
     std::regex expressionHandler("<(\\w+)((?:\\s+\\w+=(?:\"[^\"]*\"|\\w+))*)\\s*(?:>([\\s\\S]*?)</\\1>|/>)");
     std::smatch matches;
 
@@ -90,10 +91,10 @@ void Element::parse(std::string prefix, std::string input) {
                 std::string content = nestedMatches[0].str();
 
                 if(content.find("<") != std::string::npos) {
-                    Element * node = new Element(name, content);
+                    Element * node = new Element(content);
                     this->children.push_back(node);
                 } else {
-                    Text * node = new Text(name, content);
+                    Text * node = new Text(content);
                     this->children.push_back(node);
                 }
 
@@ -105,7 +106,7 @@ void Element::parse(std::string prefix, std::string input) {
     }
 }
 
-Text::Text(std::string name, std::string value) : Element(name, value) {
+Text::Text(std::string value) : Element(value) {
     this->content = value;
 }
 

@@ -20,13 +20,14 @@ public:
 
 class Element {
 private:
+    std::string prefix;
     std::string name;
     std::vector<Attribute> attributes;
     std::vector<Element *> children;
 
-    void parse(std::string prefix, std::string input);
+    void parse(std::string input);
 public:
-    Element(std::string prefix, std::string input);
+    Element(std::string input);
     ~Element();
 
     std::string getName();
@@ -41,24 +42,8 @@ class Text: public Element {
 private:
     std::string content;
 public:
-    Text(std::string name, std::string value);
+    Text(std::string value);
     std::string textContent();
-};
-
-#endif
-
-#ifndef namespace_hpp
-#define namespace_hpp
-
-class Namespace {
-private:
-    std::string name;
-    Element * root;
-public:
-    Namespace(std::string name, std::string data);
-    ~Namespace();
-    std::string getName();
-    std::vector<Element *> getElementsByTagName(std::string name);
 };
 
 #endif
@@ -68,24 +53,11 @@ public:
 
 class Document {
 private:
-    std::vector<Namespace *> namespaces;
+    Element * root;
 public:
-    Document(std::string prefix, std::string data);
+    Document(std::string input);
     ~Document();
     std::vector<Element *> getElementsByTagName(std::string name);
-    std::vector<Element *> getElementsByTagName(std::string prefix, std::string name);
-};
-
-#endif
-
-#ifndef prolog_hpp
-#define prolog_hpp
-
-class Prolog {
-private:
-    void parse(std::string data);
-public:
-    Prolog(std::string data);
 };
 
 #endif
@@ -95,10 +67,15 @@ public:
 
 class Xml {
 private:
-    Prolog * prolog;
+    std::string version;
+    std::string encoding;
+    std::string standalone;
+
     Document * document;
+
+    void parse(std::string input);
 public:
-    Xml(std::string data);
+    Xml(std::string input);
     ~Xml();
     Document * getDocument();
 };
