@@ -11,7 +11,8 @@ private:
 
     Document * document;
 
-    void parse(std::string input);
+    void parse_prolog(std::string input);
+    void parse_doctype(std::string input);
 public:
     Xml(std::string input);
     ~Xml();
