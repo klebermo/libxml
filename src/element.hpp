@@ -10,13 +10,16 @@
 
 class Attribute {
 private:
-    void parse(std::string data);
-public:
     std::string key;
     std::string value;
 
+    void parse(std::string data);
+public:
     Attribute(std::string data);
     Attribute(std::string key, std::string value);
+
+    std::string getKey();
+    std::string getValue();
 };
 
 class Element {

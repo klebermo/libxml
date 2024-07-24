@@ -9,6 +9,14 @@ Attribute::Attribute(std::string key, std::string value) {
     this->value = value;
 }
 
+std::string Attribute::getKey() {
+    return this->key;
+}
+
+std::string Attribute::getValue() {
+    return this->value;
+}
+
 void Attribute::parse(std::string data) {
     std::regex attributeHandler("(\\w+)=([\"'])(.*?)\\2|\\w+");
     auto attrsBegin = std::sregex_iterator(data.begin(), data.end(), attributeHandler);
@@ -42,8 +50,8 @@ void Element::setName(std::string value) {
 
 std::string Element::getAttribute(std::string key) {
     for(Attribute attribute : attributes) {
-        if(attribute.key.compare(key) == 0) {
-            return attribute.value;
+        if(attribute.getKey().compare(key) == 0) {
+            return attribute.getValue();
         }
     }
     return "";
