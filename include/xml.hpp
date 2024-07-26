@@ -9,13 +9,16 @@
 
 class Attribute {
 private:
-    void parse(std::string data);
-public:
     std::string key;
     std::string value;
 
+    void parse(std::string data);
+public:
     Attribute(std::string data);
     Attribute(std::string key, std::string value);
+
+    std::string getKey();
+    std::string getValue();
 };
 
 class Element {
@@ -67,14 +70,7 @@ public:
 
 class Xml {
 private:
-    std::string version;
-    std::string encoding;
-    std::string standalone;
-
     Document * document;
-
-    void parse_prolog(std::string input);
-    void parse_doctype(std::string input);
 public:
     Xml(std::string input);
     ~Xml();
