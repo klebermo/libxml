@@ -1,7 +1,10 @@
 export cc := g++
-export cpp_flags := -Wall -pedantic -fPIC -g
+export cpp_flags := -Wall -pedantic -fPIC
 
 all: libxml
+
+any.o: src/any.cpp
+	$(cc) $(cpp_flags) -c src/any.cpp
 
 element.o: src/element.cpp
 	$(cc) $(cpp_flags) -c src/element.cpp
@@ -21,9 +24,9 @@ document.o: src/document.cpp
 xml.o: src/xml.cpp
 	$(cc) $(cpp_flags) -c src/xml.cpp
 
-libxml: element.o node.o path.o query.o document.o xml.o
-	$(cc) $(cpp_flags) -shared -o libxml.so element.o node.o path.o query.o document.o xml.o
-	ar -rcs libxml.a element.o node.o path.o query.o document.o xml.o
+libxml: any.o element.o node.o path.o query.o document.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so any.o element.o node.o path.o query.o document.o xml.o
+	ar -rcs libxml.a any.o element.o node.o path.o query.o document.o xml.o
 
 clean:
 	rm -f *.o *.so *.a
