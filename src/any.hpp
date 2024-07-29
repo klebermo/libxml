@@ -9,9 +9,9 @@ enum Type {
 
 enum PrimitiveType {
     duration,
-    dataTime,
-    time,
-    date,
+    dateTime,
+    time_type,
+    date_type,
     gYearMonth,
     gYear,
     gMonthDay,
