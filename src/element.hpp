@@ -19,7 +19,6 @@ public:
 
 class Element {
 private:
-    std::string prefix;
     std::string name;
     std::vector<Attribute> attributes;
     std::vector<Element *> children;
@@ -34,7 +33,6 @@ public:
 
     std::vector<Element *> getElementsByTagName(std::string name);
     std::string getAttribute(std::string key);
-    std::string getTextContent();
 };
 
 class Text: public Element {

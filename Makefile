@@ -24,15 +24,18 @@ path.o: src/path.cpp
 query.o: src/query.cpp
 	$(cc) $(cpp_flags) -c src/query.cpp
 
+namespace.o: src/namespace.cpp
+	$(cc) $(cpp_flags) -c src/namespace.cpp
+
 document.o: src/document.cpp
 	$(cc) $(cpp_flags) -c src/document.cpp
 
 xml.o: src/xml.cpp
 	$(cc) $(cpp_flags) -c src/xml.cpp
 
-libxml: simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
-	$(cc) $(cpp_flags) -shared -o libxml.so simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
-	ar -rcs libxml.a simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
+libxml: simple.o complex.o any.o element.o node.o path.o query.o namespace.o document.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so simple.o complex.o any.o element.o node.o path.o query.o namespace.o document.o xml.o
+	ar -rcs libxml.a simple.o complex.o any.o element.o node.o path.o query.o namespace.o document.o xml.o
 
 clean:
 	rm -f *.o *.so *.a

@@ -34,7 +34,6 @@ Element::Element(std::string input) {
 }
 
 Element::~Element() {
-    this->prefix.clear();
     this->name.clear();
     this->attributes.clear();
     this->children.clear();
@@ -77,15 +76,7 @@ void Element::parse(std::string input) {
         std::string tagName = matches[1].str();
         std::string attributesStr = matches[2].str();
         std::string innerContent = matches[3].matched ? matches[3].str() : "";
-
-        auto pos = tagName.find(":");
-        if(pos == std::string::npos) {
-            this->prefix = "";
-            this->name = tagName;
-        } else {
-            this->prefix = tagName.substr(0, pos);
-            this->name = tagName.substr(pos + 1, tagName.length());
-        }
+        this->name = tagName;
 
         std::regex attributeHandler("(\\w+)=([\"'])(.*?)\\2|\\w+");
         auto attrsBegin = std::sregex_iterator(attributesStr.begin(), attributesStr.end(), attributeHandler);

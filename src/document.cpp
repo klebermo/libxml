@@ -52,15 +52,17 @@ std::string DTD::getInternalSubset() {
 Document::Document(std::string input) {
     prolog = new Prolog(input);
     dtd = new DTD(input);
-    root = new Element(input);
 }
 
 Document::~Document() {
     delete prolog;
     delete dtd;
-    delete root;
 }
 
-std::vector<Element *> Document::getElementsByTagName(std::string name) {
-    return root->getElementsByTagName(name);
+std::vector<Element *> Document::getElementsByTagName(std::string prefix, std::string tagname) {
+    if(prefix.empty()) {
+        return namespaces[""]->getElementsByTagName(tagname);
+    } else {
+        return namespaces[prefix]->getElementsByTagName(tagname);
+    }
 }

@@ -1,7 +1,7 @@
 #ifndef document_hpp
 #define document_hpp
 
-#include "query.hpp"
+#include "namespace.hpp"
 
 class Prolog {
 private:
@@ -33,11 +33,11 @@ class Document {
 private:
     Prolog * prolog;
     DTD * dtd;
-    Element * root;
+    std::map<std::string, Namespace *> namespaces;
 public:
     Document(std::string input);
     ~Document();
-    std::vector<Element *> getElementsByTagName(std::string name);
+    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname);
 };
 
 #endif
