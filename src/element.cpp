@@ -76,7 +76,14 @@ void Element::parse(std::string input) {
         std::string tagName = matches[1].str();
         std::string attributesStr = matches[2].str();
         std::string innerContent = matches[3].matched ? matches[3].str() : "";
-        this->name = tagName;
+
+        auto pos = tagName.find(":");
+        if(pos == std::string::npos) {
+            this->name = tagName;
+        } else {
+            std::string prefix = tagName.substr(0, pos);
+            this->name = tagName.substr(pos + 1, tagName.length());
+        }
 
         std::regex attributeHandler("(\\w+)=([\"'])(.*?)\\2|\\w+");
         auto attrsBegin = std::sregex_iterator(attributesStr.begin(), attributesStr.end(), attributeHandler);
