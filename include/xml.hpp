@@ -51,16 +51,59 @@ public:
 
 #endif
 
+#ifndef namespace_hpp
+#define namespace_hpp
+
+class Namespace {
+private:
+    std::string name;
+    Element * root;
+public:
+    Namespace(std::string value);
+    ~Namespace();
+    std::vector<Element *> getElementsByTagName(std::string tagname);
+};
+
+#endif
+
 #ifndef document_hpp
 #define document_hpp
 
+class Prolog {
+private:
+    std::string version;
+    std::string encoding;
+    bool standalone;
+public:
+    Prolog(std::string data);
+    std::string getVersion();
+    std::string getEncoding();
+    bool isStandalone();
+};
+
+class DTD {
+private:
+    std::string name;
+    std::string externalId;
+    std::string systemId;
+    std::string internalSubset;
+public:
+    DTD(std::string data);
+    std::string getName();
+    std::string getExternalId();
+    std::string getSystemId();
+    std::string getInternalSubset();
+};
+
 class Document {
 private:
-    Element * root;
+    Prolog * prolog;
+    DTD * dtd;
+    std::map<std::string, Namespace *> namespaces;
 public:
     Document(std::string input);
     ~Document();
-    std::vector<Element *> getElementsByTagName(std::string name);
+    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname);
 };
 
 #endif
