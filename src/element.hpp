@@ -1,13 +1,7 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include <string>
-#include <list>
-#include <map>
-#include <vector>
-#include <regex>
-#include <iostream>
-#include <any>
+#include "schema/any.hpp"
 
 class Attribute {
 private:

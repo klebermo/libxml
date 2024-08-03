@@ -3,8 +3,14 @@ export cpp_flags := -Wall -pedantic -fPIC
 
 all: libxml
 
-any.o: src/any.cpp
-	$(cc) $(cpp_flags) -c src/any.cpp
+simple.o: src/schema/simple.cpp
+	$(cc) $(cpp_flags) -c src/schema/simple.cpp
+
+complex.o: src/schema/complex.cpp
+	$(cc) $(cpp_flags) -c src/schema/complex.cpp
+
+any.o: src/schema/any.cpp
+	$(cc) $(cpp_flags) -c src/schema/any.cpp
 
 element.o: src/element.cpp
 	$(cc) $(cpp_flags) -c src/element.cpp
@@ -24,9 +30,9 @@ document.o: src/document.cpp
 xml.o: src/xml.cpp
 	$(cc) $(cpp_flags) -c src/xml.cpp
 
-libxml: any.o element.o node.o path.o query.o document.o xml.o
-	$(cc) $(cpp_flags) -shared -o libxml.so any.o element.o node.o path.o query.o document.o xml.o
-	ar -rcs libxml.a any.o element.o node.o path.o query.o document.o xml.o
+libxml: simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
+	$(cc) $(cpp_flags) -shared -o libxml.so simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
+	ar -rcs libxml.a simple.o complex.o any.o element.o node.o path.o query.o document.o xml.o
 
 clean:
 	rm -f *.o *.so *.a
