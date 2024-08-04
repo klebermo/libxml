@@ -1,12 +1,9 @@
 #ifndef time_hpp
 #define time_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class Time : public Any {
-private:
-    //
-public:
+class Time : public simpleType {
     //
 };
 

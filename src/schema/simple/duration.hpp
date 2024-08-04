@@ -1,12 +1,9 @@
-#ifndef any_hpp
-#define any_hpp
+#ifndef duration_hpp
+#define duration_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class Duration : public Any {
-private:
-    //
-public:
+class Duration : public simpleType {
     //
 };
 

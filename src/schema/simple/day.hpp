@@ -1,12 +1,9 @@
 #ifndef day_hpp
 #define day_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class Day : public Any {
-private:
-    //
-public:
+class Day : public simpleType {
     //
 };
 

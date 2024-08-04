@@ -1,12 +1,9 @@
 #ifndef month_hpp
 #define month_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class Month : public Any {
-private:
-    //
-public:
+class Month : public simpleType {
     //
 };
 

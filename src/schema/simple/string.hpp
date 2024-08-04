@@ -1,12 +1,9 @@
 #ifndef string_hpp
 #define string_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class String : public Any {
-private:
-    //
-public:
+class String : public simpleType {
     //
 };
 

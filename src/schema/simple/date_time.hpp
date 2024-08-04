@@ -1,12 +1,9 @@
 #ifndef date_time_hpp
 #define date_time_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class DateTime : public Any {
-private:
-    //
-public:
+class DateTime : public simpleType {
     //
 };
 

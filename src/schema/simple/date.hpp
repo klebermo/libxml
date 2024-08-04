@@ -1,12 +1,9 @@
 #ifndef date_hpp
 #define date_hpp
 
-#include "../any.hpp"
+#include "../simple.hpp"
 
-class Date : public Any {
-private:
-    //
-public:
+class Date : public simpleType {
     //
 };
 
