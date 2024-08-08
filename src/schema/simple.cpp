@@ -1,6 +1,6 @@
 #include "simple.hpp"
 
-std::ostream& operator<<(std::ostream& os, const simpleType& type) {
+std::ostream& operator<<(std::ostream& os, simpleType& type) {
     return type.print(os);
 }
 

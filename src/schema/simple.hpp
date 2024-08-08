@@ -5,7 +5,7 @@
 
 class simpleType : public Any {
 public:
-    friend std::ostream& operator<<(std::ostream& os, const simpleType& type);
+    friend std::ostream& operator<<(std::ostream& os, simpleType& type);
     friend std::istream& operator>>(std::istream& is, simpleType& type);
 };
 
