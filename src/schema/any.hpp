@@ -9,9 +9,9 @@
 
 class Any {
 public:
-    virtual Any * get() = 0;
-    virtual void set(Any * value) = 0;
-    virtual Any * parse(std::string value) = 0;
+    virtual std::ostream& print(std::ostream& os) = 0;
+    virtual std::istream& read(std::istream& is) = 0;
+    virtual std::string str() = 0;
 };
 
 #endif
