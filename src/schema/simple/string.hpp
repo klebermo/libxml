@@ -27,9 +27,8 @@ private:
     struct Word value;
     enum Pontuacao suffix;
 public:
-    std::ostream& print(std::ostream& os);
-    std::istream& read(std::istream& is);
-    std::string str();
+    std::string print();
+    void read(std::string data);
 };
 
 #endif

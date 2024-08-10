@@ -1,16 +1,16 @@
 #include "string.hpp"
 
-std::ostream& String::print(std::ostream& os) {
-    os << str();
-    return os;
+std::string String::print() {
+    return std::string(value.tokens.data());
 }
 
-std::istream& String::read(std::istream& is) {
+void String::read(std::string data) {
     char ch;
-    std::string punctuation = ",;:()\"—!?."; // Pontuações válidas
+    std::string punctuation = ",;:()\"—!?.";
     value.tokens.clear();
 
     // Ler e identificar o prefixo
+    std::stringstream is(data);
     is >> ch;
     if (punctuation.find(ch) != std::string::npos) {
         switch (ch) {
@@ -48,9 +48,6 @@ std::istream& String::read(std::istream& is) {
                     preffix = Ponto_final;
                 break;
         }
-    } else {
-        is.setstate(std::ios::failbit); // Sinalizar erro de leitura
-        return is;
     }
 
     // Ler a palavra
@@ -95,13 +92,5 @@ std::istream& String::read(std::istream& is) {
                     suffix = Ponto_final;
                 break;
         }
-    } else {
-        is.setstate(std::ios::failbit); // Sinalizar erro de leitura
     }
-
-    return is;
-}
-
-std::string String::str() {
-    return std::string(value.tokens.data());
 }

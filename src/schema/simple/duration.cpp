@@ -1,15 +1,10 @@
 #include "duration.hpp"
 
-std::ostream& Duration::print(std::ostream& os) {
-    os << str();
-    return os;
-}
-
-std::istream& Duration::read(std::istream& is) {
-    is >> value;
-    return is;
-}
-
-std::string Duration::str() {
+std::string Duration::print() {
     return std::to_string(value);
+}
+
+void Duration::read(std::string data) {
+    std::stringstream is(data);
+    is >> value;
 }

@@ -7,9 +7,8 @@ class Datetime : public simpleType {
 private:
     u_int64_t value;
 public:
-    std::ostream& print(std::ostream& os);
-    std::istream& read(std::istream& is);
-    std::string str();
+    std::string print();
+    void read(std::string value);
 
     u_int8_t day();
     u_int8_t month();

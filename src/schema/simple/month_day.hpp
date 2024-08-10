@@ -7,9 +7,8 @@ class MonthDay : public simpleType {
 private:
     char value[4];
 public:
-    std::ostream& print(std::ostream& os);
-    std::istream& read(std::istream& is);
-    std::string str();
+    std::string print();
+    void read(std::string data);
 };
 
 #endif

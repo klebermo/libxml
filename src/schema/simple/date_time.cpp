@@ -1,34 +1,6 @@
 #include "date_time.hpp"
 
-std::ostream& Datetime::print(std::ostream& os) {
-    os << str();
-    return os;
-}
-
-std::istream& Datetime::read(std::istream& is) {
-    int d, m, y, h, min, s;
-    char slash1, slash2, space, colon1, colon2;
-    
-    if (is >> d >> slash1 >> m >> slash2 >> y >> space >> h >> colon1 >> min >> colon2 >> s) {
-        if (slash1 == '/' && slash2 == '/' && space == ' ' && colon1 == ':' && colon2 == ':') {
-            value = 0;
-            value |= static_cast<u_int64_t>(s);
-            value |= static_cast<u_int64_t>(min) << 6;
-            value |= static_cast<u_int64_t>(h) << 12;
-            value |= static_cast<u_int64_t>(d) << 17;
-            value |= static_cast<u_int64_t>(m) << 22;
-            value |= static_cast<u_int64_t>(y) << 26;
-        } else {
-            is.setstate(std::ios::failbit);
-        }
-    } else {
-        is.setstate(std::ios::failbit);
-    }
-
-    return is;
-}
-
-std::string Datetime::str() {
+std::string Datetime::print() {
     u_int8_t year1 = (year() >> 8) & 0xFF;
     u_int8_t year2 = year() & 0xFF;
 
@@ -37,6 +9,24 @@ std::string Datetime::str() {
 
     std::string result(reinterpret_cast<const char*>(data), arraySize);
     return result;
+}
+
+void Datetime::read(std::string data) {
+    value = 0;
+    int d, m, y, h, min, s;
+    char slash1, slash2, space, colon1, colon2;
+    
+    std::stringstream is(data);
+    if (is >> d >> slash1 >> m >> slash2 >> y >> space >> h >> colon1 >> min >> colon2 >> s) {
+        if (slash1 == '/' && slash2 == '/' && space == ' ' && colon1 == ':' && colon2 == ':') {
+            value |= static_cast<u_int64_t>(s);
+            value |= static_cast<u_int64_t>(min) << 6;
+            value |= static_cast<u_int64_t>(h) << 12;
+            value |= static_cast<u_int64_t>(d) << 17;
+            value |= static_cast<u_int64_t>(m) << 22;
+            value |= static_cast<u_int64_t>(y) << 26;
+        }
+    }
 }
 
 u_int8_t Datetime::day() {

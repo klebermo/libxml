@@ -1,31 +1,6 @@
 #include "date.hpp"
 
-std::ostream& Date::print(std::ostream& os) {
-    os << str();
-    return os;
-}
-
-std::istream& Date::read(std::istream& is) {
-    int d, m, y;
-    char slash1, slash2;
-    
-    if (is >> d >> slash1 >> m >> slash2 >> y) {
-        if (slash1 == '/' && slash2 == '/') {
-            value = 0;
-            value |= static_cast<u_int64_t>(d);
-            value |= static_cast<u_int64_t>(m) << 6;
-            value |= static_cast<u_int64_t>(y) << 12;
-        } else {
-            is.setstate(std::ios::failbit);
-        }
-    } else {
-        is.setstate(std::ios::failbit);
-    }
-
-    return is;
-}
-
-std::string Date::str() {
+std::string Date::print() {
     u_int8_t year1 = (year() >> 8) & 0xFF;
     u_int8_t year2 = year() & 0xFF;
 
@@ -34,6 +9,22 @@ std::string Date::str() {
 
     std::string result(reinterpret_cast<const char*>(data), arraySize);
     return result;
+}
+
+void Date::read(std::string data) {
+    value = 0;
+    int d, m, y;
+    char slash1, slash2;
+    
+    std::stringstream is(data);
+    if (is >> d >> slash1 >> m >> slash2 >> y) {
+        if (slash1 == '/' && slash2 == '/') {
+            value = 0;
+            value |= static_cast<u_int64_t>(d);
+            value |= static_cast<u_int64_t>(m) << 6;
+            value |= static_cast<u_int64_t>(y) << 12;
+        }
+    }
 }
 
 u_int8_t Date::day() {
