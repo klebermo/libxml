@@ -7,29 +7,42 @@
 #ifndef element_hpp
 #define element_hpp
 
+class Any {
+public:
+    virtual std::string print() = 0;
+    virtual void read(std::string value) = 0;
+};
+
+class simpleType : public Any {
+public:
+    friend void operator<<(simpleType& type, std::string value) {
+        type.read(value);
+    }
+};
+
 class Attribute {
 private:
     std::string key;
-    std::string value;
+    simpleType * value;
 
     void parse(std::string data);
 public:
     Attribute(std::string data);
-    Attribute(std::string key, std::string value);
+    Attribute(std::string key, simpleType * value);
 
     std::string getKey();
-    std::string getValue();
+    simpleType * getValue();
 };
 
 class Element {
 private:
-    std::string prefix;
     std::string name;
     std::vector<Attribute> attributes;
     std::vector<Element *> children;
 
     void parse(std::string input);
 public:
+    Element();
     Element(std::string input);
     ~Element();
 
@@ -37,16 +50,23 @@ public:
     void setName(std::string value);
 
     std::vector<Element *> getElementsByTagName(std::string name);
-    std::string getAttribute(std::string key);
-    std::string getTextContent();
+    simpleType * getAttribute(std::string key);
 };
 
 class Text: public Element {
 private:
-    std::string content;
+    std::vector<simpleType *> content;
 public:
     Text(std::string value);
     std::string textContent();
+};
+
+class Data: public Element {
+private:
+    std::string content;
+public:
+    Data(std::string value);
+    std::string getContent();
 };
 
 #endif
@@ -103,7 +123,7 @@ private:
 public:
     Document(std::string input);
     ~Document();
-    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname);
+    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname = "");
 };
 
 #endif

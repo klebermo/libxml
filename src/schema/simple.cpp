@@ -14,9 +14,9 @@ Type get_type(std::string value) {
     if (std::regex_match(value, dateTimeRegex)) {
         return dateTime;
     } else if (std::regex_match(value, timeRegex)) {
-        return time;
+        return time_;
     } else if (std::regex_match(value, dateRegex)) {
-        return date;
+        return date_;
     } else if (std::regex_match(value, yearMonthRegex)) {
         return yearMonth;
     } else if (std::regex_match(value, yearRegex)) {

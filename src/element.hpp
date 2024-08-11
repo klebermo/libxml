@@ -1,18 +1,8 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include "schema/simple/date_time.hpp"
-#include "schema/simple/date.hpp"
-#include "schema/simple/day.hpp"
-#include "schema/simple/duration.hpp"
-#include "schema/simple/month_day.hpp"
-#include "schema/simple/month.hpp"
-#include "schema/simple/string.hpp"
-#include "schema/simple/time.hpp"
-#include "schema/simple/year_month.hpp"
-#include "schema/simple/year.hpp"
-
-#include "schema/complex.hpp"
+#include "schema/simpleTypes.hpp"
+#include "schema/complexTypes.hpp"
 
 class Attribute {
 private:

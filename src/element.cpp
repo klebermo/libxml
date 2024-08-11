@@ -25,7 +25,42 @@ void Attribute::parse(std::string data) {
     for (std::sregex_iterator i = attrsBegin; i != attrsEnd; ++i) {
         std::smatch attrMatch = *i;
         this->key = attrMatch[1].str();
-        std::string value = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
+        std::string data = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
+
+        Type type = get_type(data);
+        switch(type) {
+            case string:
+                this->value = new String();
+                break;
+            case duration:
+                this->value = new Duration();
+                break;
+            case dateTime:
+                this->value = new Datetime();
+                break;
+            case time_:
+                this->value = new Time();
+                break;
+            case date_:
+                this->value = new Date();
+                break;
+            case yearMonth:
+                this->value = new YearMonth();
+                break;
+            case year:
+                this->value = new Year();
+                break;
+            case monthDay:
+                this->value = new MonthDay();
+                break;
+            case day:
+                this->value = new Day();
+                break;
+            case month:
+                this->value = new Month();
+                break;                                            
+        };
+        *this->value << data;
     }
 }
 
@@ -95,45 +130,12 @@ void Element::parse(std::string input) {
 
         for (std::sregex_iterator i = attrsBegin; i != attrsEnd; ++i) {
             std::smatch attrMatch = *i;
+            
             std::string key = attrMatch[1].str();
-            std::string value_str = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
-
-            Type type = get_type(value_str);
-            simpleType * value_data;
-            switch(type) {
-                case string:
-                    value_data = new String();
-                    break;
-                case duration:
-                    value_data = new Duration();
-                    break;
-                case dateTime:
-                    value_data = new Datetime();
-                    break;
-                case time_:
-                    value_data = new Time();
-                    break;
-                case date_:
-                    value_data = new Date();
-                    break;
-                case yearMonth:
-                    value_data = new YearMonth();
-                    break;
-                case year:
-                    value_data = new Year();
-                    break;
-                case monthDay:
-                    value_data = new MonthDay();
-                    break;
-                case day:
-                    value_data = new Day();
-                    break;
-                case month:
-                    value_data = new Month();
-                    break;                                            
-            };
-            *value_data << value_str;
-            this->attributes.push_back(Attribute(key, value_data));
+            std::string value = attrMatch[3].matched ? attrMatch[3].str() : attrMatch[2].str();
+            
+            std::string data = key + "=" + value;
+            this->attributes.push_back(Attribute(data));
         }
 
         if (!innerContent.empty()) {
@@ -145,6 +147,9 @@ void Element::parse(std::string input) {
 
                 if(content.find("<") != std::string::npos) {
                     Element * node = new Element(content);
+                    this->children.push_back(node);
+                } else if(content.find("CDATA")) {
+                    Data * node = new Data(content);
                     this->children.push_back(node);
                 } else {
                     Text * node = new Text(content);
@@ -160,17 +165,27 @@ void Element::parse(std::string input) {
 }
 
 Text::Text(std::string value) : Element(value) {
-    //
+    std::istringstream ss(value);
+    std::string token;
+    while(ss >> token) {
+        simpleType * type = new String();
+        type->read(token);
+        content.push_back(type);
+    }
 }
 
 std::string Text::textContent() {
-    return "";
+    std::string value = "";
+    for(simpleType * type : content) {
+        value = value + type->print() + " ";
+    }
+    return value;
 }
 
 Data::Data(std::string value) {
-    //
+    this->content = value;
 }
 
 std::string Data::getContent() {
-    return "";
+    return this->content;
 }
