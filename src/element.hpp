@@ -4,6 +4,8 @@
 #include "schema/simpleTypes.hpp"
 #include "schema/complexTypes.hpp"
 
+#include <iostream>
+
 class Attribute {
 private:
     std::string key;

@@ -10,6 +10,7 @@ private:
 public:
     Namespace(std::string value);
     ~Namespace();
+    std::string getName();
     std::vector<Element *> getElementsByTagName(std::string tagname);
 };
 

@@ -33,11 +33,12 @@ class Document {
 private:
     Prolog * prolog;
     DTD * dtd;
-    std::map<std::string, Namespace *> namespaces;
+    std::vector<Namespace *> namespaces;
 public:
     Document(std::string input);
     ~Document();
-    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname = "");
+    std::vector<Element *> getElementsByTagName(std::string tagname);
+    std::vector<Element *> getElementsByTagName(std::string prefix, std::string tagname);
 };
 
 #endif

@@ -172,6 +172,7 @@ Text::Text(std::string value) : Element(value) {
         type->read(token);
         content.push_back(type);
     }
+    std::cout << "text: " + textContent() << std::endl;
 }
 
 std::string Text::textContent() {
@@ -183,6 +184,7 @@ std::string Text::textContent() {
 }
 
 Data::Data(std::string value) {
+    std::cout << "CDATA: " + value << std::endl;
     this->content = value;
 }
 

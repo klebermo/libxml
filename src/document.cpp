@@ -52,6 +52,8 @@ std::string DTD::getInternalSubset() {
 Document::Document(std::string input) {
     prolog = new Prolog(input);
     dtd = new DTD(input);
+    Namespace * data = new Namespace(input);
+    this->namespaces.push_back(data);
 }
 
 Document::~Document() {
@@ -59,10 +61,24 @@ Document::~Document() {
     delete dtd;
 }
 
-std::vector<Element *> Document::getElementsByTagName(std::string prefix, std::string tagname) {
-    if(prefix.empty()) {
-        return namespaces[""]->getElementsByTagName(tagname);
-    } else {
-        return namespaces[prefix]->getElementsByTagName(tagname);
+std::vector<Element *> Document::getElementsByTagName(std::string tagname) {
+    std::vector<Element *> result;
+    for(Namespace * item : namespaces) {
+        if(item->getName().empty()) {
+            result = item->getElementsByTagName(tagname);
+            break;
+        }
     }
+    return result;
+}
+
+std::vector<Element *> Document::getElementsByTagName(std::string prefix, std::string tagname) {
+    std::vector<Element *> result;
+    for(Namespace * item : namespaces) {
+        if(item->getName().compare(prefix) == 0) {
+            result = item->getElementsByTagName(tagname);
+            break;
+        }
+    }
+    return result;
 }
