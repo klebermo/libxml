@@ -99,12 +99,16 @@ std::vector<Element *> Element::getElementsByTagName(std::string name) {
     std::vector<Element *> result;
 
     for(Element * item : this->children) {
-        if(name == item->getName()) {
+        if(name.compare(item->getName()) == 0) {
             result.push_back(item);
         }
     }
 
     return result;
+}
+
+Element * Element::innerHTML() {
+    return this;
 }
 
 void Element::parse(std::string input) {
@@ -139,16 +143,18 @@ void Element::parse(std::string input) {
         }
 
         if (!innerContent.empty()) {
-            std::regex nestedTagHandler("<(\\w+)((?:\\s+\\w+=(?:\"[^\"]*\"|\\w+))*)\\s*(?:>([\\s\\S]*?)</\\1>|/>)");
+            std::regex nestedTagHandler(
+                R"(<(\w+)((?:\s+\w+=(?:\"[^\"]*\"|\w+))*)\s*(?:>([\s\S]*?)<\/\1>|\/>)|([\s\S]+?)(?=<|$))"
+            );
             std::smatch nestedMatches;
 
             while (std::regex_search(innerContent, nestedMatches, nestedTagHandler)) {
                 std::string content = nestedMatches[0].str();
 
                 if(content.find("<") != std::string::npos) {
-                    Element * node = new Element(content);
+                    Element * node = new Tag(content);
                     this->children.push_back(node);
-                } else if(content.find("CDATA")) {
+                } else if(content.find("CDATA") != std::string::npos) {
                     Data * node = new Data(content);
                     this->children.push_back(node);
                 } else {
@@ -164,6 +170,18 @@ void Element::parse(std::string input) {
     }
 }
 
+Tag::Tag(std::string value) {
+    this->parse(value);
+}
+
+std::string Tag::textContent() {
+    std::string result;
+    for(Element * item : this->children) {
+        result = result + item->textContent();
+    }
+    return result;
+}
+
 Text::Text(std::string value) : Element(value) {
     std::istringstream ss(value);
     std::string token;
@@ -172,11 +190,10 @@ Text::Text(std::string value) : Element(value) {
         type->read(token);
         content.push_back(type);
     }
-    std::cout << "text: " + textContent() << std::endl;
 }
 
 std::string Text::textContent() {
-    std::string value = "";
+    std::string value;
     for(simpleType * type : content) {
         value = value + type->print() + " ";
     }
@@ -184,10 +201,9 @@ std::string Text::textContent() {
 }
 
 Data::Data(std::string value) {
-    std::cout << "CDATA: " + value << std::endl;
     this->content = value;
 }
 
-std::string Data::getContent() {
+std::string Data::textContent() {
     return this->content;
 }

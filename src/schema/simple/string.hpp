@@ -4,6 +4,7 @@
 #include "../simple.hpp"
 
 enum Pontuacao {
+    Zero,
     Virgula,
     Ponto_e_virgula,
     Dois_pontos,

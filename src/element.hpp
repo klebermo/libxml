@@ -4,8 +4,6 @@
 #include "schema/simpleTypes.hpp"
 #include "schema/complexTypes.hpp"
 
-#include <iostream>
-
 class Attribute {
 private:
     std::string key;
@@ -21,7 +19,7 @@ public:
 };
 
 class Element {
-private:
+protected:
     std::string name;
     std::vector<Attribute> attributes;
     std::vector<Element *> children;
@@ -37,6 +35,15 @@ public:
 
     std::vector<Element *> getElementsByTagName(std::string name);
     simpleType * getAttribute(std::string key);
+
+    virtual std::string textContent() = 0;
+    Element * innerHTML();
+};
+
+class Tag : public Element {
+public:
+    Tag(std::string value);
+    std::string textContent();
 };
 
 class Text: public Element {
@@ -52,7 +59,7 @@ private:
     std::string content;
 public:
     Data(std::string value);
-    std::string getContent();
+    std::string textContent();
 };
 
 #endif

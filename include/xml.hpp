@@ -51,6 +51,9 @@ public:
 
     std::vector<Element *> getElementsByTagName(std::string name);
     simpleType * getAttribute(std::string key);
+
+    virtual std::string textContent();
+    Element * innerHTML();    
 };
 
 class Text: public Element {

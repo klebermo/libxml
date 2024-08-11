@@ -1,7 +1,37 @@
 #include "string.hpp"
 
 std::string String::print() {
-    return std::string(value.tokens.data());
+    std::string result;
+    switch(preffix) {
+        case Zero: result = result + ""; break;
+        case Virgula: result = result + ","; break;
+        case Ponto_e_virgula: result = result + ";"; break;
+        case Dois_pontos: result = result + ":"; break;
+        case Reticencias: result = result + "..."; break;
+        case Parenteses_abertura: result = result + "("; break;
+        case Parenteses_fechamento: result = result + ")"; break;
+        case Aspas: result = result + "\""; break;
+        case Travessao: result = result + "-"; break;
+        case Ponto_de_exclamacao: result = result + "!"; break;
+        case Ponto_de_interrogacao: result = result + "?"; break;
+        case Ponto_final: result = result + "."; break;
+    }
+    result = result + value.tokens.data();
+    switch(suffix) {
+        case Zero: result = result + ""; break;
+        case Virgula: result = result + ","; break;
+        case Ponto_e_virgula: result = result + ";"; break;
+        case Dois_pontos: result = result + ":"; break;
+        case Reticencias: result = result + "..."; break;
+        case Parenteses_abertura: result = result + "("; break;
+        case Parenteses_fechamento: result = result + ")"; break;
+        case Aspas: result = result + "\""; break;
+        case Travessao: result = result + "-"; break;
+        case Ponto_de_exclamacao: result = result + "!"; break;
+        case Ponto_de_interrogacao: result = result + "?"; break;
+        case Ponto_final: result = result + "."; break;
+    }    
+    return result;
 }
 
 void String::read(std::string data) {
@@ -11,8 +41,8 @@ void String::read(std::string data) {
 
     // Ler e identificar o prefixo
     std::stringstream is(data);
-    is >> ch;
-    if (punctuation.find(ch) != std::string::npos) {
+    if (punctuation.find(is.peek()) != std::string::npos) {
+        is >> ch;
         switch (ch) {
             case ',':
                 preffix = Virgula;
@@ -47,16 +77,20 @@ void String::read(std::string data) {
                 else
                     preffix = Ponto_final;
                 break;
+            default:
+                preffix = Zero;
+                break;
         }
     }
 
     // Ler a palavra
-    while (is >> std::noskipws >> ch && ch != ' ' && punctuation.find(ch) == std::string::npos) {
+    while (is >> ch && ch != ' ' && punctuation.find(ch) == std::string::npos) {
         value.tokens.push_back(ch);
     }
 
     // Identificar o sufixo ou espaço no final
-    if (punctuation.find(ch) != std::string::npos) {
+    if (punctuation.find(is.peek()) != std::string::npos) {
+        is >> ch;
         switch (ch) {
             case ',':
                 suffix = Virgula;
@@ -90,6 +124,9 @@ void String::read(std::string data) {
                     suffix = Reticencias;
                 else
                     suffix = Ponto_final;
+                break;
+            default:
+                suffix = Zero;
                 break;
         }
     }
