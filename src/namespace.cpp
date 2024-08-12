@@ -6,7 +6,7 @@ Namespace::Namespace(std::string value) {
 }
 
 Namespace::~Namespace() {
-    //
+    delete root;
 }
 
 std::string Namespace::getName() {
