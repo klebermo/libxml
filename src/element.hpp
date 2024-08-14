@@ -28,7 +28,7 @@ protected:
 public:
     Element();
     Element(std::string input);
-    ~Element();
+    virtual ~Element() = 0;
 
     std::string getName();
     void setName(std::string value);
@@ -43,6 +43,7 @@ public:
 class Tag : public Element {
 public:
     Tag(std::string value);
+    ~Tag();
     std::string textContent();
 };
 
@@ -51,6 +52,7 @@ private:
     std::vector<simpleType *> content;
 public:
     Text(std::string value);
+    ~Text();
     std::string textContent();
 };
 
@@ -59,6 +61,7 @@ private:
     std::string content;
 public:
     Data(std::string value);
+    ~Data();
     std::string textContent();
 };
 

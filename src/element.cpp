@@ -174,6 +174,10 @@ Tag::Tag(std::string value) {
     this->parse(value);
 }
 
+Tag::~Tag() {
+    //
+}
+
 std::string Tag::textContent() {
     std::string result;
     for(Element * item : this->children) {
@@ -192,6 +196,10 @@ Text::Text(std::string value) : Element(value) {
     }
 }
 
+Text::~Text() {
+    //
+}
+
 std::string Text::textContent() {
     std::string value;
     for(simpleType * type : content) {
@@ -202,6 +210,10 @@ std::string Text::textContent() {
 
 Data::Data(std::string value) {
     this->content = value;
+}
+
+Data::~Data() {
+    //
 }
 
 std::string Data::textContent() {
