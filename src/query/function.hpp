@@ -6,10 +6,10 @@
 class Function : public Expression {
 private:
     std::string name;
-    std::vector<Expression*> arguments;
+    std::vector<Expression> arguments;
 public:
-    Function(const std::string& name, const std::vector<Expression*>& args) : name(name), arguments(args) {}
-    ~Function();
+    Function(std::string value);
+    std::string evaluate();
 };
 
 #endif

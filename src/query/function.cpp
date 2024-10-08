@@ -1,5 +1,10 @@
 #include "function.hpp"
 
-Function::~Function() {
-    for(auto arg : arguments) delete arg;
+
+Function::Function(std::string value) {
+    //
+}
+
+std::string Function::evaluate() {
+    return "";
 }

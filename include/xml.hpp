@@ -145,3 +145,39 @@ public:
 };
 
 #endif
+
+#ifndef path_hpp
+#define path_hpp
+
+class Path {
+private:
+    std::vector<Element> nodes;
+public:
+    Path(std::string value);
+    void evaluate();
+};
+
+#endif
+
+#ifndef expression_hpp
+#define expression_hpp
+
+class Expression {
+public:
+    virtual std::string  evaluate() = 0;
+};
+
+#endif
+
+#ifndef query_hpp
+#define query_hpp
+
+class Query {
+private:
+    std::vector<Expression> expressions;
+public:
+    Query(std::string value);
+    void execute();
+};
+
+#endif

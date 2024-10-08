@@ -3,11 +3,12 @@
 
 #include "expression.hpp"
 
-class Path : public Expression {
+class PathExpr : public Expression {
 private:
     std::vector<std::string> steps;
 public:
-    Path();
+    PathExpr(std::string value);
+    std::string evaluate();
 };
 
 #endif

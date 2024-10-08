@@ -9,6 +9,7 @@ private:
     std::string value;
 public:
     Variable(const std::string& name, const std::string& value) : name(name), value(value) {}
+    std::string evaluate();
 };
 
 #endif

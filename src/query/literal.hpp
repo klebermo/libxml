@@ -8,6 +8,7 @@ private:
     std::string value;
 public:
     Literal(const std::string& val) : value(val) {}
+    std::string evaluate();
 };
 
 #endif

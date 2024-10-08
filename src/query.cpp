@@ -1,21 +1,9 @@
 #include "query.hpp"
 
-Query::Query() {
+Query::Query(std::string value) {
     //
 }
 
-Query::Query(Expression * expr) {
-    //
-}
-
-Query::~Query() {
-    delete root;
-}
-
-void Query::addChild(Expression * expr) {
-    //
-}
-
-void Query::execute() {
+void Query::evaluate() {
     //
 }

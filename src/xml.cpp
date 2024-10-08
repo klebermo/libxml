@@ -11,3 +11,11 @@ Xml::~Xml() {
 Document * Xml::getDocument() {
     return this->document;
 }
+
+std::string Xml::evaluatePath(std::string value) {
+    return "";
+}
+
+std::string Xml::evaluateQuery(std::string value) {
+    return "";
+}

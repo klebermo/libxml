@@ -10,6 +10,8 @@ public:
     Xml(std::string input);
     ~Xml();
     Document * getDocument();
+    std::string evaluatePath(std::string value);
+    std::string evaluateQuery(std::string value);
 };
 
 #endif

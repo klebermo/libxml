@@ -2,22 +2,14 @@
 #define query_hpp
 
 #include "path.hpp"
-
-#include "query/literal.hpp"
-#include "query/variable.hpp"
-#include "query/function.hpp"
-#include "query/path.hpp"
-#include "query/flwor.hpp"
+#include "query/expression.hpp"
 
 class Query {
 private:
-    Expression * root;
+    std::vector<Expression> expressions;
 public:
-    Query();
-    Query(Expression * expr);
-    ~Query();
-    void addChild(Expression * expr);
-    void execute();
+    Query(std::string value);
+    void evaluate();
 };
 
 #endif

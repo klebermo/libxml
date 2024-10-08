@@ -6,7 +6,7 @@
 
 class Expression {
 public:
-    virtual ~Expression() = default;
+    virtual std::string  evaluate() = 0;
 };
 
 #endif
