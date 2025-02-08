@@ -1,8 +1,7 @@
 #ifndef element_hpp
 #define element_hpp
 
-#include "schema/simpleTypes.hpp"
-#include "schema/complexTypes.hpp"
+#include "complexTypes.hpp"
 
 class Attribute {
 private:
